@@ -6,46 +6,54 @@
     <title>Upgrade Your Grey Matter!</title>
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Robot+Mono">
+    <link href='https://fonts.googleapis.com/css?family=Audiowide|Iceland|Monoton|Pacifico|Press+Start+2P|Vampiro+One' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-    <section>
-        <header>
-            <h1 id="heading">Upgrade Your Grey Matter!</h1>
-        </header>
-
+    <header class="main-header">
+        <h1 id="heading">Upgrade Your Grey Matter!</h1>
+    </header>
+    <p class="toggleL">Hide List</p>
         <button id="toggleList">-</button>
-        <p class="toggleL">Hide List</p>
-
+    <section class="main-section">
         <section class="list">
-            <p class="description">Things to learn:</p>
+            <p class="description">Things to learn</p>
             <input type="text" class="description">
             <button class="description">Change List description</button>
-            <button id="hideD">-</button>
+            <button id="hideD">+</button>
             <p class="toggleB">Hide Description Button</p>
-            <ul>
-                <li>Thoth tarot
+            <div class="flex-list">
+                <ul>
 
-                </li>
+                    <li>Thoth tarot
 
-                <li>Master Javascript
+                    </li>
 
-                </li>
+                    <li>Master Vanilla Javascript
 
-                <li>PlaceHolder
+                    </li>
 
-                </li>
+                    <li>PlaceHolder
 
-                <li>React/Redeux
+                    </li>
 
-                </li>
+                    <li>React/Redeux
+
+                    </li>
+            </div>
             </ul>
             <input type="text" class="addItemInput">
             <button class="addItemButton">Add Item</button>
         </section>
-        <script src="app.js"></script>
-</body>
-</section>
+        <!--list-->
+    </section>
+    <!--main-section-->
+<footer class="foot">
+    <span>
+        &copy;2017 BVSSCRVFT
+    </span>
+</footer>
+    <script src="app.js"></script>
 
+</body>
 </html>
