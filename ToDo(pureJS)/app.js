@@ -10,12 +10,19 @@ const listUl = list.querySelector('ul');
 const addItemInput = document.querySelector('input.addItemInput');
 const addItemButton = document.querySelector('button.addItemButton');
 const lis = listUl.children;
+lis.input = document.createElement('input');
 const firstListItem = listUl.firstElementChild;
 const lastListItem = listUl.lastElementChild;
 
-firstListItem.style.backgroundColor = 'pink';
-lastListItem.style.backgroundColor = 'lavender';
+firstListItem.style.backgroundColor = '#591fa5';
+lastListItem.style.backgroundColor = 'crimson';
 
+function attachListItemNotes(li) {
+    let noteInput = document.createElement('input');
+    noteInput.className = 'noteInput';
+    noteInput.value = 'Write Notes Here';
+    li.appendChild(noteInput);
+}
 
 function attachListItemButtons(li) {
     //Creates up button
@@ -33,15 +40,24 @@ function attachListItemButtons(li) {
     remove.className = 'remove';
     remove.textContent = 'Remove';
     li.appendChild(remove);
+    //Creates Edit button
+    let notes = document.createElement('button');
+    notes.className = 'notes';
+    notes.textContent = 'Notes';
+    li.appendChild(notes);
 }
 //loops through list items/adds buttons to the page for each item.
 for (let i = 0; i < lis.length; i += 1) {
-    attachListItemButtons(lis[i]);
+    attachListItemNotes(lis[i])
+    attachListItemButtons(lis[i])
+
 }
+
 //Adds functionality to Up, Down, and Remove.
 listUl.addEventListener('click', (event) => {
 
     if (event.target.tagName == 'BUTTON') {
+
         if (event.target.className == 'remove') {
             let li = event.target.parentNode;
             let ul = li.parentNode;
@@ -65,6 +81,16 @@ listUl.addEventListener('click', (event) => {
                 ul.insertBefore(nextLi, li);
             }
         }
+        if (event.target.className == 'notes') {
+            let li = event.target.parentNode;
+            let noteInput = li.children[0]
+            if (noteInput.style.display == 'block') {
+                noteInput.style.display = 'none';
+            } else {
+                noteInput.style.display = 'block';
+            }
+            console.log(noteInput.style.display);
+        }
     }
 });
 
@@ -79,33 +105,44 @@ toggleList.addEventListener('click', () => {
         toggleList.textContent = '+';
         list.style.display = 'none';
     }
+    console.log(list.style.display)
 });
 
 //Hides/Shows Change List Descrption button.
 toggleButton.addEventListener('click', () => {
     toggleBText.textContent = 'Hide Description Buttion';
-    if (descriptionButton.style.display == 'none') {
-        toggleButton.textContent = '-';
-        descriptionButton.style.display = 'inline-block';
-        descriptionInput.style.display = 'inline-block';
-    } else {
-        toggleBText.textContent = 'Show Description Buttion';
+    if (descriptionButton.style.display == 'inline-block') {
         toggleButton.textContent = '+';
         descriptionButton.style.display = 'none';
         descriptionInput.style.display = 'none';
+    } else {
+        toggleBText.textContent = 'Show Description Buttion';
+        toggleButton.textContent = '-';
+        descriptionButton.style.display = 'inline-block';
+        descriptionInput.style.display = 'inline-block';
     }
 });
 
 descriptionButton.addEventListener('click', () => {
-    descriptionP.innerHTML = descriptionInput.value + ':';
-    addItemButton;
+    if (descriptionInput.value === "") {
+        alert("Please enter a Description");
+    } else {
+        descriptionP.innerHTML = descriptionInput.value + ':';
+        addItemButton();
+    }
 });
 //Adds items to list
 addItemButton.addEventListener('click', () => {
-    let ul = document.getElementsByTagName('ul')[0];
-    let li = document.createElement('li');
-    li.textContent = addItemInput.value;
-    attachListItemButtons(li);
-    ul.appendChild(li);
-    addItemInput.value = '';
+    if (addItemInput.value === "") {
+        alert('Please enter an Item');
+    } else {
+        let ul = document.getElementsByTagName('ul')[0];
+        let li = document.createElement('li');
+        let liNotes = document.createElement('input');
+        li.textContent = addItemInput.value;
+        attachListItemNotes(li)
+        attachListItemButtons(li);
+        ul.appendChild(li);
+        addItemInput.value = '';
+    }
 });
