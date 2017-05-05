@@ -128,7 +128,6 @@ descriptionButton.addEventListener('click', () => {
         alert("Please enter a Description");
     } else {
         descriptionP.innerHTML = descriptionInput.value + ':';
-        addItemButton();
     }
 });
 //Adds items to list
